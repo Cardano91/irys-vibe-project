@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vibe To-Do App</title>
+  <style>
+    #taskList div {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Vibe To-Do List</h1>
+  <p>Current Time: <span id="time"></span></p>
+  <input type="text" id="taskInput" placeholder="Yeni görev ekle...">
+  <button onclick="addTask()">Ekle</button>
+  <div id="taskList"></div>
+  <script>
+    function updateTime() {
+      const now = new Date();
+      document.getElementById('time').innerText = now.toLocaleString('tr-TR', { timeZone: 'Europe/Istanbul' });
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    function addTask() {
+      const input = document.getElementById('taskInput');
+      const taskText = input.value.trim();
+      if (taskText) {
+        const taskDiv = document.createElement('div');
+        taskDiv.innerText = taskText;
+        document.getElementById('taskList').appendChild(taskDiv);
+        input.value = '';
+      }
+    }
+  </script>
+</body>
+</html>
